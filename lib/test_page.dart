@@ -10,7 +10,9 @@ class TestPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(onPressed: () async {
         await context.setLocale(const Locale('uz'));
       }),
-      body: Center(child: Text(context.tr('greeting')),),
+      body: Center(
+        child: Text("context.tr('greeting')"),
+      ),
     );
   }
 }
