@@ -1,35 +1,57 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/button.dart';
-import 'package:notes_app/cosmic_home_page.dart';
+import 'package:notes_app/firebase_features/cubit/user_cubit.dart';
+import 'package:notes_app/test_page.dart';
+import 'package:notes_app/view/cosmic_home_page.dart';
 import 'package:notes_app/favorite_planets.dart';
-import 'package:notes_app/home_page.dart';
-import 'package:notes_app/planets_info.dart';
+import 'package:notes_app/firebase_features/cubit/planets_cubit.dart';
+import 'package:notes_app/view/home_page.dart';
+import 'package:notes_app/view/planets_info.dart';
+import 'package:notes_app/profile_page.dart';
+import 'package:notes_app/view/test1.dart';
 import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Firebase.initializeApp(
+
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(
+    EasyLocalization(child: const MyApp(), supportedLocales: const [
+      Locale('uz'), Locale('en'), Locale('ru')
+    ],
+    startLocale: const Locale('uz'),
+     path: 'assets/translations')
+    );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-     
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return MultiBlocProvider(
+      providers: [BlocProvider(create: (context) => PlanetsCubit()), 
+      BlocProvider(create: (context) => UserCubit())
+        ],
+      child: MaterialApp(
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          useMaterial3: true,
+        ),
+        home: const InstagramPage(),
       ),
-      home: const Button(),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:notes_app/cosmic_home_page.dart';
+import 'package:notes_app/view/cosmic_home_page.dart';
 import 'package:notes_app/favorite_planets.dart';
 import 'package:notes_app/profile_page.dart';
 

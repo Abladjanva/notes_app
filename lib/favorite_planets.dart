@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:notes_app/planets_info.dart';
+import 'package:notes_app/view/planets_info.dart';
 
 class FavoritePlanets extends StatefulWidget {
   const FavoritePlanets({super.key});
@@ -109,7 +109,6 @@ class _FavoritePlanetsState extends State<FavoritePlanets> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // 🪐 Planet image with ShaderMask
                 ShaderMask(
                   shaderCallback: (Rect bounds) {
                     return LinearGradient(
@@ -130,9 +129,9 @@ class _FavoritePlanetsState extends State<FavoritePlanets> {
                   ),
                 ),
 
-                const SizedBox(width: 16), // spacing between image and text
+                const SizedBox(width: 16), 
 
-                // 📝 Planet name + description
+               
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -160,7 +159,7 @@ class _FavoritePlanetsState extends State<FavoritePlanets> {
                   ),
                 ),
 
-                // ❤️ Favorite icon aligned to top-right
+             
                 Align(
                   alignment: Alignment.topCenter,
                   child: IconButton(
