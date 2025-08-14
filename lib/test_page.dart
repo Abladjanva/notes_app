@@ -11,7 +11,7 @@ class TestPage extends StatelessWidget {
         await context.setLocale(const Locale('uz'));
       }),
       body: Center(
-        child: Text("context.tr('greeting')"),
+        child: Text(context.tr('greeting')),
       ),
     );
   }
